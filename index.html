@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="fvnina.webp">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* স্লাইডশো ব্যাকগ্রাউন্ড কন্টেইনার */
+        .slideshow-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* প্রতিটি স্লাইডের স্টাইল */
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* প্রথম স্লাইডটি ডিফল্টভাবে দেখাবে */
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* ছবির ওপর কালো হালকা আবরণ (Overlay) লেখা স্পষ্ট দেখার জন্য */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2;
+        }
+
+        /* মূল কনটেন্ট এরিয়া (ডিসপ্লের ঠিক মাঝখানে) */
+        .content-area {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            text-align: center;
+            width: 90%;
+            max-width: 700px;
+            color: #fff;
+        }
+
+        /* প্রধান আকর্ষণীয় লেখা */
+        .main-text {
+            font-size: 2.2rem;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            letter-spacing: 0.5px;
+        }
+
+        /* আকর্ষণীয় বাটন */
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            /* বাটন নড়াচড়া করার অ্যানিমেশন */
+            animation: pulse-wiggle 2s infinite ease-in-out;
+        }
+
+        .cta-button:hover {
+            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.6);
+        }
+
+        /* বাটনটি হালকা নড়ার এবং বড়-ছোট হওয়ার অ্যানিমেশন কোড */
+        @keyframes pulse-wiggle {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+            33% {
+                transform: scale(1.05) rotate(-2deg);
+            }
+            66% {
+                transform: scale(1.05) rotate(2deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        /* রেসপন্সিভ (মোবাইলের জন্য সাইজ ঠিক করা) */
+        @media (max-width: 600px) {
+            .main-text {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+            }
+            .cta-button {
+                padding: 14px 35px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- স্লাইডশো ব্যাকগ্রাউন্ড (আপনার ছবির নাম অনুযায়ী সেট করা) -->
+    <div class="slideshow-container">
+        <div class="slide active" style="background-image: url('df1.webp');"></div>
+        <div class="slide" style="background-image: url('df2.webp');"></div>
+        <div class="slide" style="background-image: url('df3.webp');"></div>
+        <div class="slide" style="background-image: url('df4.webp');"></div>
+        <div class="slide" style="background-image: url('df5.webp');"></div>
+        <div class="slide" style="background-image: url('df6.webp');"></div>
+    </div>
+
+    <!-- অন্ধকার ওভারলে -->
+    <div class="overlay"></div>
+
+    <!-- ডিসপ্লের মাঝখানের কনটেন্ট -->
+    <div class="content-area">
+        <h1 class="main-text">
+            স্বাগতম! আমার প্রোফাইল পেজে আপনাকে স্বাগতম। নিচে দেওয়া বাটনে ক্লিক করে আজই আমাদের বিশেষ মেম্বারশিপের সাথে যুক্ত হোন।
+        </h1>
+        
+        <!-- আপনার অ্যাফিলিয়েট লিংকটি href="#" এর জায়গায় বসিয়ে দিবেন -->
+        <a href="YOUR_AFFILIATE_LINK_HERE" class="cta-button">ভেরিফাই নাম্বার</a>
+    </div>
+
+    <!-- ছবি ১ সেকেন্ড পর পর পরিবর্তনের জাভাস্ক্রিপ্ট কোড -->
+    <script>
+        let slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        const slideInterval = 1000; // ১০০০ মিলি-সেকেন্ড = ১ সেকেন্ড
+
+        function nextSlide() {
+            // বর্তমান স্লাইড থেকে একটিভ ক্লাস বাদ দেওয়া
+            slides[currentSlide].classList.remove('active');
+            
+            // পরবর্তী স্লাইড হিসেব করা
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // নতুন স্লাইডে একটিভ ক্লাস যোগ করা
+            slides[currentSlide].classList.add('active');
+        }
+
+        // প্রতি ১ সেকেন্ড পর পর nextSlide ফাংশনটি রান হবে
+        setInterval(nextSlide, slideInterval);
+    </script>
+
+</body>
+</html>
