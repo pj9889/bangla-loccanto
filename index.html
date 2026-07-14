@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body, html {
@@ -39,7 +39,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* ভিডিওর ওপর হালকা কালো পর্দা যেন লেখা স্পষ্ট হয় */
+            background: rgba(0, 0, 0, 0.65); /* ভিডিওর ওপর হালকা কালো পর্দা যেন টেক্সট প্রিমিয়াম ফুটে ওঠে */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -49,58 +49,48 @@
             color: #fff;
         }
 
-        /* লোগো স্টাইল */
-        .logo {
-            max-width: 180px;
-            height: auto;
-            margin-bottom: 15px;
-            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.5));
-        }
-
-        /* স্পেশাল লোগো টেক্সট */
-        .powered-by {
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-        }
-
-        .locanto {
-            font-weight: 800;
-            font-size: 24px;
+        /* স্পেশাল ব্র্যান্ডিং টেক্সট (প্রিমিয়াম স্টাইল) */
+        .locanto-branding {
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
         }
 
         .blue-text { color: #007bff; }
         .lite-orange { color: #ffb066; }
         .deep-orange { color: #ff6600; }
 
-        /* মেইন হেডলাইন */
+        /* মেইন হেডলাইন (প্রিমিয়াম লুক) */
         .headline {
-            font-size: 22px;
+            font-size: 26px;
             font-weight: 600;
-            margin-bottom: 35px;
-            max-width: 600px;
-            line-height: 1.4;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+            margin-bottom: 40px;
+            max-width: 650px;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+            text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.9);
         }
 
         .red-text {
             color: #ff3333;
-            font-weight: 700;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
         }
 
         /* কাউন্টডাউন টাইমার */
         .countdown-box {
             font-size: 16px;
             font-weight: 500;
-            background: rgba(255, 0, 0, 0.2);
-            border: 1px solid rgba(255, 0, 0, 0.4);
-            padding: 8px 20px;
+            background: rgba(255, 0, 0, 0.15);
+            border: 1px solid rgba(255, 0, 0, 0.35);
+            padding: 10px 24px;
             border-radius: 50px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             letter-spacing: 1px;
-            box-shadow: 0 0 10px rgba(255,0,0,0.2);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
         }
 
         #timer {
@@ -113,12 +103,12 @@
             background: linear-gradient(135deg, #ff6600, #ff3300);
             color: white;
             border: none;
-            padding: 16px 50px;
-            font-size: 22px;
+            padding: 18px 60px;
+            font-size: 24px;
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0px 5px 20px rgba(255, 51, 0, 0.5);
+            box-shadow: 0px 6px 25px rgba(255, 51, 0, 0.5);
             transition: transform 0.2s, box-shadow 0.2s;
             position: relative;
             text-decoration: none;
@@ -127,10 +117,10 @@
 
         .cta-button:hover {
             transform: scale(1.05);
-            box-shadow: 0px 8px 25px rgba(255, 51, 0, 0.7);
+            box-shadow: 0px 8px 30px rgba(255, 51, 0, 0.8);
         }
 
-        /* ফেক বাফারিং/লোডিং ওভারলে */
+        /* ফেক বাফারিং স্ক্রিন */
         .buffering-overlay {
             display: none;
             position: fixed;
@@ -138,7 +128,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.85);
             z-index: 9999;
             justify-content: center;
             align-items: center;
@@ -146,13 +136,13 @@
         }
 
         .spinner {
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border: 6px solid #333;
             border-top: 6px solid #ff6600;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         @keyframes spin {
@@ -162,7 +152,7 @@
 
         .buffering-text {
             color: white;
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 500;
             letter-spacing: 1px;
         }
@@ -173,18 +163,14 @@
     <!-- অনবরত লুপে চলা ব্যাকগ্রাউন্ড ভিডিও -->
     <video autoplay loop muted playsinline class="video-background">
         <source src="vid1x.mp4" type="video/mp4">
-        <!-- যদি ভিডিওর এক্সটেনশন অন্য কিছু হয় যেমন .webm, তবে এখানে পরিবর্তন করতে পারেন -->
     </video>
 
     <!-- মেইন কন্টেন্ট এরিয়া -->
     <div class="content-overlay">
         
-        <!-- লোগো ইমেজ -->
-        <img src="zd11.webp" alt="Logo" class="logo">
-
-        <!-- স্পেশাল ব্র্যান্ডিং টেক্সট -->
-        <div class="powered-by">
-            Powrd By <span class="locanto"><span class="blue-text">Lo</span>can<span class="lite-orange">co</span><span class="deep-orange">to</span></span>
+        <!-- স্পেশাল প্রিমিয়াম ব্র্যান্ড টেক্সট (লোগো ও Powrd By ছাড়া) -->
+        <div class="locanto-branding">
+            <span class="blue-text">Lo</span>can<span class="lite-orange">co</span><span class="deep-orange">to</span>
         </div>
 
         <!-- প্রধান অফার টেক্সট -->
@@ -210,7 +196,7 @@
 
     <script>
         // এখানে আপনার আসল অ্যাফিলিয়েট লিংকটি বসান
-        const affiliateLink = "https://YOUR_AFFILIATE_LINK_HERE.com";
+        const affiliateLink = "https://dghhgdb.kftln.com/p/Z7zwu";
 
         // ৩৯ মিনিট ৪৬ সেকেন্ড কাউন্টডাউন স্ক্রিপ্ট
         let totalSeconds = (39 * 60) + 46; 
@@ -219,15 +205,13 @@
 
         const countdownInterval = setInterval(() => {
             if (totalSeconds <= 0) {
-                // সময় শেষ হলে আবার ৩৯:৪৬ থেকে লুপ করবে যাতে নতুন ভিজিটর সবসময় অফার দেখে
-                totalSeconds = (39 * 60) + 46; 
+                totalSeconds = (39 * 60) + 46; // রিসেট লুপ
             }
 
             let hours = Math.floor(totalSeconds / 3600);
             let minutes = Math.floor((totalSeconds % 3600) / 60);
             let seconds = totalSeconds % 60;
 
-            // ফরম্যাটিং (00:00:00 রূপ দেওয়া)
             hours = hours < 10 ? "0" + hours : hours;
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
@@ -239,10 +223,10 @@
         // ২ সেকেন্ডের ফেক বাফারিং এবং রিডাইরেক্ট ফাংশন
         function startBuffering() {
             const bufferScreen = document.getElementById('bufferScreen');
-            bufferScreen.style.display = 'flex'; // বাফারিং স্ক্রিন চালু
+            bufferScreen.style.display = 'flex'; 
 
             setTimeout(() => {
-                window.location.href = affiliateLink; // ২ সেকেন্ড পর লিংকে ট্রান্সফার
+                window.location.href = affiliateLink; 
             }, 2000); 
         }
     </script>
