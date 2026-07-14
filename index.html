@@ -3,180 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Portfolio</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/webp" href="fvnina.webp">
-
+    <title>Welcome to Private Chat</title>
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body, html {
+            width: 100%;
             height: 100%;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
             background-color: #000;
         }
 
-        /* স্লাইডশো ব্যাকগ্রাউন্ড কন্টেইনার */
-        .slideshow-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
+        /* ব্যাকগ্রাউন্ড ভিডিও স্টাইল */
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            object-fit: cover;
         }
 
-        /* প্রতিটি স্লাইডের স্টাইল */
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        /* প্রথম স্লাইডটি ডিফল্টভাবে দেখাবে */
-        .slide.active {
-            opacity: 1;
-        }
-
-        /* ছবির ওপর কালো হালকা আবরণ (Overlay) লেখা স্পষ্ট দেখার জন্য */
-        .overlay {
+        /* মেইন কন্টেইনার (ডিসপ্লের মাঝে রাখার জন্য) */
+        .content-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 2;
-        }
-
-        /* মূল কনটেন্ট এরিয়া (ডিসপ্লের ঠিক মাঝখানে) */
-        .content-area {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 3;
+            background: rgba(0, 0, 0, 0.6); /* ভিডিওর ওপর হালকা কালো পর্দা যেন লেখা স্পষ্ট হয় */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            width: 90%;
-            max-width: 700px;
+            padding: 20px;
             color: #fff;
         }
 
-        /* প্রধান আকর্ষণীয় লেখা */
-        .main-text {
-            font-size: 2.2rem;
-            font-weight: bold;
-            line-height: 1.5;
-            margin-bottom: 40px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-            letter-spacing: 0.5px;
+        /* লোগো স্টাইল */
+        .logo {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.5));
         }
 
-        /* আকর্ষণীয় বাটন */
+        /* স্পেশাল লোগো টেক্সট */
+        .powered-by {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+
+        .locanto {
+            font-weight: 800;
+            font-size: 24px;
+        }
+
+        .blue-text { color: #007bff; }
+        .lite-orange { color: #ffb066; }
+        .deep-orange { color: #ff6600; }
+
+        /* মেইন হেডলাইন */
+        .headline {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 35px;
+            max-width: 600px;
+            line-height: 1.4;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+        }
+
+        .red-text {
+            color: #ff3333;
+            font-weight: 700;
+        }
+
+        /* কাউন্টডাউন টাইমার */
+        .countdown-box {
+            font-size: 16px;
+            font-weight: 500;
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.4);
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(255,0,0,0.2);
+        }
+
+        #timer {
+            font-weight: 700;
+            color: #ff3333;
+        }
+
+        /* কল-টু-অ্যাকশন বাটন */
         .cta-button {
-            display: inline-block;
-            padding: 18px 45px;
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #fff;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            background: linear-gradient(135deg, #ff6600, #ff3300);
+            color: white;
             border: none;
+            padding: 16px 50px;
+            font-size: 22px;
+            font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.4);
+            box-shadow: 0px 5px 20px rgba(255, 51, 0, 0.5);
             transition: transform 0.2s, box-shadow 0.2s;
-            /* বাটন নড়াচড়া করার অ্যানিমেশন */
-            animation: pulse-wiggle 2s infinite ease-in-out;
+            position: relative;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .cta-button:hover {
-            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.6);
+            transform: scale(1.05);
+            box-shadow: 0px 8px 25px rgba(255, 51, 0, 0.7);
         }
 
-        /* বাটনটি হালকা নড়ার এবং বড়-ছোট হওয়ার অ্যানিমেশন কোড */
-        @keyframes pulse-wiggle {
-            0% {
-                transform: scale(1) rotate(0deg);
-            }
-            33% {
-                transform: scale(1.05) rotate(-2deg);
-            }
-            66% {
-                transform: scale(1.05) rotate(2deg);
-            }
-            100% {
-                transform: scale(1) rotate(0deg);
-            }
+        /* ফেক বাফারিং/লোডিং ওভারলে */
+        .buffering-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
-        /* রেসপন্সিভ (মোবাইলের জন্য সাইজ ঠিক করা) */
-        @media (max-width: 600px) {
-            .main-text {
-                font-size: 1.5rem;
-                margin-bottom: 30px;
-            }
-            .cta-button {
-                padding: 14px 35px;
-                font-size: 1.1rem;
-            }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #333;
+            border-top: 6px solid #ff6600;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .buffering-text {
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
-    <!-- স্লাইডশো ব্যাকগ্রাউন্ড (আপনার ছবির নাম অনুযায়ী সেট করা) -->
-    <div class="slideshow-container">
-        <div class="slide active" style="background-image: url('df1.webp');"></div>
-        <div class="slide" style="background-image: url('df2.webp');"></div>
-        <div class="slide" style="background-image: url('df3.webp');"></div>
-        <div class="slide" style="background-image: url('df4.webp');"></div>
-        <div class="slide" style="background-image: url('df5.webp');"></div>
-        <div class="slide" style="background-image: url('df6.webp');"></div>
-    </div>
+    <!-- অনবরত লুপে চলা ব্যাকগ্রাউন্ড ভিডিও -->
+    <video autoplay loop muted playsinline class="video-background">
+        <source src="vid1x.mp4" type="video/mp4">
+        <!-- যদি ভিডিওর এক্সটেনশন অন্য কিছু হয় যেমন .webm, তবে এখানে পরিবর্তন করতে পারেন -->
+    </video>
 
-    <!-- অন্ধকার ওভারলে -->
-    <div class="overlay"></div>
-
-    <!-- ডিসপ্লের মাঝখানের কনটেন্ট -->
-    <div class="content-area">
-        <h1 class="main-text">
-           আমি লামিয়া খান.দুনিয়াতে আমার কেউ নেই তাই আমি কারো শাসন মানি না, তুমি যদি আমার সাথে সেক্স করতে চাও তাহলে নিচের বাটনে ক্লিক করে তোমার নাম্বারটি ভেরিফাই কর আমি সেই নাম্বারে তোমাকে কল দিব, একটাই শর্ত আমার সাথে কনডম ছাড়া সেক্স করতে হবে আমি সেক্সের জন্য টাকা নিই না
-        </h1>
+    <!-- মেইন কন্টেন্ট এরিয়া -->
+    <div class="content-overlay">
         
-        <!-- আপনার অ্যাফিলিয়েট লিংকটি href="#" এর জায়গায় বসিয়ে দিবেন -->
-        <a href="https://blqbraf.bid/cl/db0758cf39225102" class="cta-button">ভেরিফাই নাম্বার</a>
+        <!-- লোগো ইমেজ -->
+        <img src="zd11.webp" alt="Logo" class="logo">
+
+        <!-- স্পেশাল ব্র্যান্ডিং টেক্সট -->
+        <div class="powered-by">
+            Powrd By <span class="locanto"><span class="blue-text">Lo</span>can<span class="lite-orange">co</span><span class="deep-orange">to</span></span>
+        </div>
+
+        <!-- প্রধান অফার টেক্সট -->
+        <div class="headline">
+            Start Private Secure Chat With <span class="red-text">Nina</span> she is online Now
+        </div>
+
+        <!-- রিভার্স কাউন্টডাউন টাইমার -->
+        <div class="countdown-box">
+            Free Registration End: <span id="timer">00:39:46</span>
+        </div>
+
+        <!-- অ্যাকশন বাটন -->
+        <button class="cta-button" onclick="startBuffering()">Join Now</button>
+
     </div>
 
-    <!-- ছবি ১ সেকেন্ড পর পর পরিবর্তনের জাভাস্ক্রিপ্ট কোড -->
+    <!-- ফেক বাফারিং স্ক্রিন -->
+    <div class="buffering-overlay" id="bufferScreen">
+        <div class="spinner"></div>
+        <div class="buffering-text">Connecting to Secure Server...</div>
+    </div>
+
     <script>
-        let slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-        const slideInterval = 1000; // ১০০০ মিলি-সেকেন্ড = ১ সেকেন্ড
+        // এখানে আপনার আসল অ্যাফিলিয়েট লিংকটি বসান
+        const affiliateLink = "https://YOUR_AFFILIATE_LINK_HERE.com";
 
-        function nextSlide() {
-            // বর্তমান স্লাইড থেকে একটিভ ক্লাস বাদ দেওয়া
-            slides[currentSlide].classList.remove('active');
-            
-            // পরবর্তী স্লাইড হিসেব করা
-            currentSlide = (currentSlide + 1) % slides.length;
-            
-            // নতুন স্লাইডে একটিভ ক্লাস যোগ করা
-            slides[currentSlide].classList.add('active');
+        // ৩৯ মিনিট ৪৬ সেকেন্ড কাউন্টডাউন স্ক্রিপ্ট
+        let totalSeconds = (39 * 60) + 46; 
+
+        const timerElement = document.getElementById('timer');
+
+        const countdownInterval = setInterval(() => {
+            if (totalSeconds <= 0) {
+                // সময় শেষ হলে আবার ৩৯:৪৬ থেকে লুপ করবে যাতে নতুন ভিজিটর সবসময় অফার দেখে
+                totalSeconds = (39 * 60) + 46; 
+            }
+
+            let hours = Math.floor(totalSeconds / 3600);
+            let minutes = Math.floor((totalSeconds % 3600) / 60);
+            let seconds = totalSeconds % 60;
+
+            // ফরম্যাটিং (00:00:00 রূপ দেওয়া)
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            timerElement.textContent = hours + ":" + minutes + ":" + seconds;
+            totalSeconds--;
+        }, 1000);
+
+        // ২ সেকেন্ডের ফেক বাফারিং এবং রিডাইরেক্ট ফাংশন
+        function startBuffering() {
+            const bufferScreen = document.getElementById('bufferScreen');
+            bufferScreen.style.display = 'flex'; // বাফারিং স্ক্রিন চালু
+
+            setTimeout(() => {
+                window.location.href = affiliateLink; // ২ সেকেন্ড পর লিংকে ট্রান্সফার
+            }, 2000); 
         }
-
-        // প্রতি ১ সেকেন্ড পর পর nextSlide ফাংশনটি রান হবে
-        setInterval(nextSlide, slideInterval);
     </script>
 
 </body>
