@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Private Chat</title>
+    
+    <!-- আপনার ফেভিকন লোগো -->
+    <link rel="icon" type="image/webp" href="gg1x.webp">
+    
     <style>
         * {
             margin: 0;
@@ -19,7 +23,7 @@
             background-color: #000;
         }
 
-        /* সুপার গ্যারান্টিড ফুল-স্ক্রিন ভিডিও লুপ স্টাইল */
+        /* ফুল-স্ক্রিন ভিডিও লুপ স্টাইল */
         .video-container {
             position: fixed;
             top: 0;
@@ -33,17 +37,17 @@
         .video-background {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* ভিডিওর রেশিও ঠিক রেখে পুরো স্ক্রিন জুড়ে রাখবে */
+            object-fit: cover;
         }
 
-        /* কন্টেন্ট এরিয়া (ভিডিওর ঠিক ওপরে ভাসমান থাকবে) */
+        /* কন্টেন্ট এরিয়া (ভিডিওর ওপর ১০০% স্পষ্ট থাকবে) */
         .content-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 2; /* ভিডিওর ওপরে রাখার জন্য জেন-ইনডেক্স ২ করা হয়েছে */
+            z-index: 2;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -51,33 +55,32 @@
             text-align: center;
             padding: 20px;
             color: #fff;
-            background: transparent; /* কোনো কালো পর্দা বা আলো কমানো হবে না, ভিডিও ১০০% স্পষ্ট থাকবে */
+            background: transparent; /* ভিডিওর আলো একটুও কমবে না */
         }
 
-        /* স্পেশাল প্রিমিয়াম ব্র্যান্ড টেক্সট (Locanto) */
+        /* সাইজ ছোট ও প্রিমিয়াম করা লোকান্তো ব্র্যান্ডিং */
         .locanto-branding {
-            font-size: 45px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
+            font-size: 28px; /* সাইজ ছোট করা হয়েছে */
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            /* লেখার পেছনে টেক্সট শ্যাডো বাড়ানো হয়েছে যেন ভিডিওর ওপরেও পরিষ্কার পড়া যায় */
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9), -2px -2px 8px rgba(0, 0, 0, 0.9);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
         }
 
-        .blue-text { color: #007bff; }
-        .lite-orange { color: #ffb066; }
-        .deep-orange { color: #ff6600; }
+        /* নতুন স্পেসিফিক কালার কোড */
+        .deep-blue { color: #0033cc; }
+        .lite-orange { color: #ffb366; }
+        .deep-orange { color: #ff5500; }
 
         /* মেইন হেডলাইন টেক্সট */
         .headline {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 600;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             max-width: 650px;
-            line-height: 1.5;
-            letter-spacing: 0.5px;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9), -2px -2px 6px rgba(0, 0, 0, 0.9);
+            line-height: 1.4;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), -2px -2px 5px rgba(0, 0, 0, 0.9);
         }
 
         .red-text {
@@ -88,13 +91,13 @@
 
         /* কাউন্টডাউন টাইমার বক্স */
         .countdown-box {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
-            background: rgba(0, 0, 0, 0.7); /* ভিডিওর ওপর টাইমার স্পষ্ট করার জন্য ব্যাকগ্রাউন্ড কালো */
+            background: rgba(0, 0, 0, 0.75); 
             border: 1px solid rgba(255, 0, 0, 0.5);
             padding: 10px 24px;
             border-radius: 50px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             letter-spacing: 1px;
             box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
         }
@@ -104,13 +107,13 @@
             color: #ff3333;
         }
 
-        /* কল-টু-অ্যাকশন বাটন (Join Now) */
+        /* কল-টু-অ্যাকশন বাটন */
         .cta-button {
             background: linear-gradient(135deg, #ff6600, #ff3300);
             color: white;
             border: none;
-            padding: 18px 60px;
-            font-size: 24px;
+            padding: 16px 55px;
+            font-size: 22px;
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
@@ -164,21 +167,20 @@
 </head>
 <body>
 
-    <!-- ভিডিও রাখার মূল কন্টেইনার -->
+    <!-- ব্যাকগ্রাউন্ড ভিডিও কন্টেইনার -->
     <div class="video-container">
-        <!-- অনবরত চলা ফুল ব্রাইটনেস ভিডিও (কোডে loop, muted, autoplay দেওয়া আছে) -->
         <video autoplay loop muted playsinline class="video-background">
             <source src="vid1x.mp4" type="video/mp4">
             আপনার ব্রাউজারটি ভিডিও সাপোর্ট করছে না।
         </video>
     </div>
 
-    <!-- মেইন কন্টেন্ট এরিয়া (ভিডিওর ওপরে ভাসমান) -->
+    <!-- মেইন কন্টেন্ট এরিয়া -->
     <div class="content-overlay">
         
-        <!-- প্রিমিয়াম ব্র্যান্ড টেক্সট -->
+        <!-- নতুন কালার ও ছোট সাইজের লোকান্তো টেক্সট -->
         <div class="locanto-branding">
-            <span class="blue-text">Lo</span>can<span class="lite-orange">co</span><span class="deep-orange">to</span>
+            <span class="deep-blue">Lo</span><span class="lite-orange">can</span><span class="deep-orange">to</span>
         </div>
 
         <!-- প্রধান অফার টেক্সট -->
@@ -196,7 +198,7 @@
 
     </div>
 
-    <!-- ফেক বাফারিং স্ক্রিন (ক্লিক করার পর আসবে) -->
+    <!-- ফেক বাফারিং স্ক্রিন -->
     <div class="buffering-overlay" id="bufferScreen">
         <div class="spinner"></div>
         <div class="buffering-text">Connecting to Secure Server...</div>
@@ -213,7 +215,7 @@
 
         setInterval(() => {
             if (totalSeconds <= 0) {
-                totalSeconds = (39 * 60) + 46; // সময় শেষ হলে আবার ৩৯:৪৬ থেকে শুরু হবে
+                totalSeconds = (39 * 60) + 46; 
             }
 
             let hours = Math.floor(totalSeconds / 3600);
